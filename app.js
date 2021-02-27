@@ -1,12 +1,16 @@
-let express = require("express");
+const express = require("express");
+const cors = require("cors")
+const bodyParser = require('body-parser');
 const db = require("./utils/db");
 const User = require("./models/User");
 const Capital = require("./models/Capital");
 const CapitalType = require("./models/CapitalType");
 const userRouter = require("./routes/users");
 
-let app = express();
+const app = express();
 const PORT = 4000;
+app.use(cors())
+app.use(express.json())
 
 //Tworzenie relacji
 //1 (user) do wiele (capitals)
@@ -23,7 +27,7 @@ app.get("/", function (req, res) {
 });
 app.use("/users", userRouter);
 db
-  //   .sync({force: true})     //-> do zmiany struktury obecnych tabel
+    // .sync({force: true})     //-> do zmiany struktury obecnych tabel
   .sync()
   .then(() => {
     console.log("Sequelize OK");

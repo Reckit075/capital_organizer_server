@@ -20,10 +20,6 @@ const User = db.define('user', {
     name:{
         type: Sequelize.TEXT,
         allowNull: true
-    },
-    surname:{
-        type: Sequelize.TEXT,
-        allowNull: true
     }
 })
 
